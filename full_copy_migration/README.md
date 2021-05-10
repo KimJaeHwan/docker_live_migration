@@ -1,9 +1,10 @@
-![image](https://user-images.githubusercontent.com/45413267/116902425-11390500-ac76-11eb-8c80-efb38ff025c6.png)
+
+![full-copy-migration-final-test](https://user-images.githubusercontent.com/45413267/117600984-086d9500-b188-11eb-81dd-93f43ee9d784.png)
+
+![image](https://user-images.githubusercontent.com/45413267/117600976-0277b400-b188-11eb-9917-ca5f1734f153.png)
 
 ------
 
-현재 기본적인 user, controller, VM1, VM2 간의 연결만 해놓은 상태이다.
+user -> contoller -> VM1 -> VM2 순서대로 메시지를 보내게 되며 controller로부터 신호를 받아 migration을 실행한다.
 
-해당 코드에 docker image를 만드는 스크립트와 파일을 전송시키는 부분을 추가하면 기본적인 Full-Copy migration은 대부분 완성될것이다.
-
-VM1과 VM2같의 연결시 IP와 port번호를 선정하는것이 좀 애매하다. Controller가 알려주는 식으로 해야하나??
+실행 결과로 VM1(.142)에 존재하던 nginx 전체를 VM2(.141)로 옮겨 실행시킨 모습이며 제대로 나온것을 확인할수 있다.
