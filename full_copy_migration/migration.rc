@@ -1,0 +1,2 @@
+docker commit c3ed1da9e4b6 nginx_docker_test
+docker save -o nginx_docker_test.tar nginx_docker_test
