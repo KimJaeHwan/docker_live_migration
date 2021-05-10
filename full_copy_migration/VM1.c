@@ -86,8 +86,11 @@ int main(int argc, char * argv[])
 
 	/* start sendgin docker image file */
 	strcpy(message,DOCKER_IMAGE_TAR);
+	printf("[%ld]\n", strlen(message));
 	send(vm2_sock,message,strlen(message),0);
 	printf("send message from VM2 : %s", message);
+	recv(vm2_sock,message,BUF_SIZE,0);	// synchronize
+
 
 	fp = fopen(DOCKER_IMAGE_TAR,"rb");
 	while(1)
@@ -95,14 +98,15 @@ int main(int argc, char * argv[])
 		str_len = fread((void*)message, 1, BUF_SIZE, fp);
 		if(str_len < BUF_SIZE)
 		{
-			if(feof(fp) != 0){
-				send(vm2_sock, message, str_len,0);
-				break;
-			}else
-				printf("fail to send file\n");
+			send(vm2_sock,message,str_len,0);
+			break;
 		}
 		send(vm2_sock, message, str_len,0);
 	}
+
+	shutdown(vm2_sock, SHUT_WR);
+	recv(vm2_sock,message,BUF_SIZE,0);
+	printf("recv from VM2 : %s \n",message);
 	/* end sending docker image file */
 	
 	fclose(fp);
