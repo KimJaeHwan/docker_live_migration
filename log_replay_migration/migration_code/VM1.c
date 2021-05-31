@@ -7,7 +7,7 @@
 
 #define BUF_SIZE 8192
 #define DOCKER_IMAGE_TAR "dockerfile"
-#define DOCKER_LOG_JSON "/var/lib/docker/containers/6a7d778160945f2b2f221f092e5763fa344f70056f8097e4e52e10cdc44d06b0"
+#define DOCKER_LOG_JSON "/var/lib/docker/containers/6a7d778160945f2b2f221f092e5763fa344f70056f8097e4e52e10cdc44d06b0/6a7d778160945f2b2f221f092e5763fa344f70056f8097e4e52e10cdc44d06b0-json.log"
 #define VM1_port 8888
 
 void error_handling(char * message);
