@@ -3,6 +3,8 @@
 docker는 컨테이너 별로 로그를 남기게 되며 해당로그는 기본적으로 json파일의 형태로 저장되어진다.
 Log_replay방식에서는 위와 같이 남는 json파일 형식의 log들을 이용하여 migration을 하는 것을 목표로 한다.
 
+![logreplay](https://user-images.githubusercontent.com/45413267/124140810-c7c53480-dac3-11eb-8b76-4ec0de53809a.png)
+
 ------
 
 ## docker log 의 특성
