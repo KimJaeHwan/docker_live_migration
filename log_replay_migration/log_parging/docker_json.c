@@ -5,8 +5,9 @@
 
 #define BUFFSIZE 80000
 
-int search_str(const char * str,const char * fin);
-void chang_exe(char * str,const char * ex, char *ret);		// BUFF, con_ex
+int search_str(char * str,char * fin);
+int container_name(char * str, const char * docker_container);
+//void chang_exe(char * str,char * ex, char *ret);		// BUFF, con_ex
 
 int main( int argc, char * argv[])
 {
@@ -18,17 +19,23 @@ int main( int argc, char * argv[])
 	char buff[BUFFSIZE];
 	char tempc[BUFFSIZE];
 	FILE * rfp;
-      	FILE * wfp; 
-	const char con_id[13] = "6a7d77816094";
-	const char con_ex[] = "6a7d77816094:/# ";
+    FILE * wfp; 
+//	const char con_id[13] = "08b4f5ff443e";
+//	const char con_ex[] = "08b4f5ff443e:/# ";
+	
+	char con_ex[17];
 	if(argc != 2){
 		printf("Usage : %s <json.log>\n",argv[0]);
 		exit(1);
 	}
 	rfp = fopen(argv[1],"rt");
-        wfp = fopen("dockerfile_test","wt");
-		strcpy(tempc,"FROM ubuntu:latest\n");
-		fputs(tempc,wfp);
+    wfp = fopen("dockerfile_test","wt");
+	strcpy(tempc,"FROM ubuntu:latest\n");
+	fputs(tempc,wfp);
+
+	container_name(con_ex,argv[1]);
+	printf("%s]\n",con_ex);
+
 
 	while(fgets(file_read,BUFFSIZE,rfp) != NULL){	// log파일 한줄만 read후json파일로 변경
 	
@@ -40,7 +47,7 @@ int main( int argc, char * argv[])
 		strcpy(BUFF,json_object_get_string(rootObject,"log"));
 		
 		//printf("test3 %d\n",strlen(json_object_get_string(rootObject,"log")));
-		index =search_str(BUFF ,con_id);
+		index =search_str(BUFF ,con_ex);
 		//printf("index : %d\n",index);
 
 
@@ -88,8 +95,8 @@ int main( int argc, char * argv[])
 	fclose(rfp);
 	return 0;
 }
-
-void chang_exe(char * str,const char * ex, char *ret){		// BUFF, con_ex
+/*
+void chang_exe(char * str,char * ex, char *ret){		// BUFF, con_ex
 	int index = 0;
 	int temp;
 	strcpy(ret,str);
@@ -99,8 +106,8 @@ void chang_exe(char * str,const char * ex, char *ret){		// BUFF, con_ex
 	};
 	ret += index;
 }
-
-int search_str(const char * str,const char * fin)
+*/
+int search_str(char * str,char * fin)
 {
 	int i,j;
 	for(j = 0,i = 0; str[i]; i++)
@@ -116,3 +123,16 @@ int search_str(const char * str,const char * fin)
 	}
 	return 0;
 }
+int container_name(char * str, const char * docker_container)
+{
+	int i;
+	for(i = 0; i < 12; i++)
+	{
+		str[i] = docker_container[i];
+	}
+	str[i++] = ':';
+	str[i++] = '/';
+	str[i++] = '#';
+	str[i++] = ' ';
+	str[i] = 0;
+}	
