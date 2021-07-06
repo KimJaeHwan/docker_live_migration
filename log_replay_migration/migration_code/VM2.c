@@ -66,7 +66,7 @@ int main(int argc, char * argv[])
 	printf("receive message from VM1 : %s %d\n",message,str_len);
 	send(vm1_sock, message, BUF_SIZE,0);	// synchronize
 
-	fp = fopen(message,"wb");
+	fp = fopen("dockerfile","wb");
 	
 	while((str_len = recv(vm1_sock, message, BUF_SIZE,0)) != 0)
 		fwrite((void*)message, 1, str_len, fp);
