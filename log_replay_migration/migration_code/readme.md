@@ -45,4 +45,12 @@ Log_replay방식에서는 위와 같이 남는 json파일 형식의 log들을 �
    ![image](https://user-images.githubusercontent.com/45413267/124145126-7e76e400-dac7-11eb-87f2-49ac1237d7b9.png)
    ![image](https://user-images.githubusercontent.com/45413267/124145183-8a62a600-dac7-11eb-9fc8-700712554d1e.png)
    
+2. dockerfile로 디렉토리 이동이불가능하다.
+cd 명령어를 이용해서 이동하여도 이후 모든 명령어는 / 디렉토리에서 실행된다.
+각 명령어라인들은 별개로 동작하는것을 알 수 있다.
+
+3. 몇가지 명령어는 dockerfile의 진행을 막는다
+   1.vim vi와 같은 텍스트 에디터로 터미널을 막는경우
+   2.test와 같이 종료 상태를 나타내주는 명령어
+   3.exit와 같은 쉘 탈출 명령어
 
