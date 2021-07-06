@@ -61,7 +61,7 @@ int main( int argc, char * argv[])
 			//printf("log : %s\n",buff);
 			
 			for(j = 0,i = 0; buff[i]; i++){
-				printf("[%c - %d]",buff[i],buff[i]);
+			//	printf("[%c - %d]",buff[i],buff[i]);
 				
 				if(buff[i] == 7)	// 경고음 발생 시퀀스
 					continue;
@@ -81,7 +81,7 @@ int main( int argc, char * argv[])
 			}
 			printf("\n");
 
-			printf("control : [%s]\n",BUFF);
+			printf("command : [%s]\n",BUFF);
 			sprintf(buff,"RUN %s\n",BUFF);
 			fputs(buff,wfp);
 			memset(&BUFF,0,BUFSIZ);
