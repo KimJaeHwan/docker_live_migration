@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <libgen.h>
 #include "parson.h"
 
 #define BUFFSIZE 80000
@@ -20,8 +21,6 @@ int main( int argc, char * argv[])
 	char tempc[BUFFSIZE];
 	FILE * rfp;
     FILE * wfp; 
-//	const char con_id[13] = "08b4f5ff443e";
-//	const char con_ex[] = "08b4f5ff443e:/# ";
 	
 	char con_ex[17];
 	if(argc != 2){
@@ -33,7 +32,8 @@ int main( int argc, char * argv[])
 	strcpy(tempc,"FROM ubuntu:latest\n");
 	fputs(tempc,wfp);
 
-	container_name(con_ex,argv[1]);
+	
+	container_name(con_ex,basename(argv[1]));
 	printf("%s]\n",con_ex);
 
 
@@ -68,23 +68,23 @@ int main( int argc, char * argv[])
 				else if(buff[i] == 8){	// 한칸 뒤로 이동 시퀀스
 					j--;
 				}else if(buff[i] == 13){// 캐리지 리턴
-					tempc[j] = 0;
+					BUFF[j] = 0;
 				}else if(buff[i] == 10){// 줄바꿈
-					tempc[j] = 0;
+					BUFF[j] = 0;
 				}
 				else{
-					tempc[j] = buff[i];
+					BUFF[j] = buff[i];
 					j++;
 				}
 				
-				tempc[j] = 0;
+				BUFF[j] = 0;
 			}
 			printf("\n");
 
-			printf("control : [%s]\n",tempc);
-			sprintf(buff,"RUN %s\n",tempc);
+			printf("control : [%s]\n",BUFF);
+			sprintf(buff,"RUN %s\n",BUFF);
 			fputs(buff,wfp);
-			memset(&tempc,0,BUFSIZ);
+			memset(&BUFF,0,BUFSIZ);
 
 		}
 		
@@ -95,18 +95,6 @@ int main( int argc, char * argv[])
 	fclose(rfp);
 	return 0;
 }
-/*
-void chang_exe(char * str,char * ex, char *ret){		// BUFF, con_ex
-	int index = 0;
-	int temp;
-	strcpy(ret,str);
-	while(temp = search_str(ret + index,ex))
-	{
-		index += temp;
-	};
-	ret += index;
-}
-*/
 int search_str(char * str,char * fin)
 {
 	int i,j;

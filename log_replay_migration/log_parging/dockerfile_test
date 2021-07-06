@@ -1,8 +1,4 @@
 FROM ubuntu:latest
-RUN ls -al
-RUN 
-RUN ifconfig
-RUN 
-RUN ip addr
-RUN 
+RUN apt-get update
+RUN apt-get install vim -y
 RUN exit
