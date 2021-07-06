@@ -31,4 +31,5 @@ docker run -d -p 88:80 nginx_docker_test
 
   모든 가상환경이 빌드되면 user 명령어 라인에서 시작 여부를 묻게되며 y입력으로 migration이 시작된다.
   
-  
+##확인
+  migration되어지는 container는 migraion.rc 코드안에 지정되어있으며 원하는 container ID로 변경해야한다.
