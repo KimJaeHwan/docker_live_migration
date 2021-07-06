@@ -39,6 +39,21 @@ Log_replay방식에서는 위와 같이 남는 json파일 형식의 log들을 �
 5. 이미지 빌드가 완료되면 중앙 컨트롤러를 거쳐 사용자에게 migration의 완료를 알린다.
 ------
 
+![image](https://user-images.githubusercontent.com/45413267/124644330-182a0100-decd-11eb-8f18-61f7767ee5bd.png)
+위는 해당 동작 을 실행한 모습이다.
+## 프로그램 실행
+프로그램 실행은 각 실행파일 별로 controller, VM1, VM2, user 각각의 가상환경을 가진다고 가정한다.
+1. ./controller.o &lt;controller port&gt;
+2. ./user.o &lt;controller IP&gt; &lt;controller port&gt;
+3. ./VM1.o &lt;controller IP&gt; &lt;controller port&gt;
+   1. VM1과 VM2는 별도의 INET소켓으로 연결되어있으며 VM1 포트번호는 #define VM1_port 8888 로 코드상에 지정되어있다.
+   2. VM1에는 dockfile을 만들기 위한 -json.log파일의 경로가 DOCKER_LOG_JSON에 코드상에 지정되어있으며 migration하고자 하는 컨테이너의 로그파일경로를 넣어주어야한다.
+4. ./VM2.o &lt;controller IP&gt; &lt;controller port&gt;
+   1. VM2 또한 VM1에 연결되어있으며 VM1에대한 IP와 port번호는 #define VM1_port 8888 , VM1_IP "192.168.139.142"로 코드 상에 지정되어있다.
+5. 모든 프로그램을 실행시킨후 user.o 실행파일에 [Y/n] 으로 실행여부를 응답한다.
+7. 이후 마이그레이션실행
+
+
 ## 주의사항
 
 1. 동작과정 3-1을 고려하지 않고 파싱하는 경우 아래와 같이 제대로 dockerfile이 동작하지 못하는것을 확인할 수 있다.
