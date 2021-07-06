@@ -6,7 +6,7 @@
 #include <sys/socket.h>
 
 #define BUF_SIZE 8192
-#define DOCKER_IMAGE_TAR "ubuntu_dockerfile"
+#define DOCKER_IMAGE_TAR "dockerfile"
 #define DOCKER_LOG_JSON "/var/lib/docker/containers/88ea4bfc2f7883359930eaaf8683176ebf12f00880fbf3b19157e0677f66110b/88ea4bfc2f7883359930eaaf8683176ebf12f00880fbf3b19157e0677f66110b-json.log"
 #define VM1_port 8888
 
