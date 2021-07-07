@@ -1,2 +1,2 @@
 FROM ubuntu:latest
-RUN echo "Hello world!" > my.file
+RUN truncate -s 100M my.file
