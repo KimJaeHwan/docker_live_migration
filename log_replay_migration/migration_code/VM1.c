@@ -25,9 +25,9 @@ int main(int argc, char * argv[])
 	FILE * fp;
 	int read_cnt;
 
-	if(argc != 3)
+	if(argc != 4)
 	{
-		printf("Usage : %s <IP> <port>\n", argv[0]);
+		printf("Usage : %s <IP> <port> <docker-json.log>\n", argv[0]);
 		exit(1);
 	}
 	
@@ -81,7 +81,7 @@ int main(int argc, char * argv[])
 	/* start make Dockerfile */
 
 	printf("make a dockerfile with json log\n");
-	sprintf(message, "./docker_json.o %s",DOCKER_LOG_JSON);
+	sprintf(message, "./docker_json.o %s",argv[3]);
 	system(message);
 	/* end make Dockerfile */
 

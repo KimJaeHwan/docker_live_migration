@@ -28,7 +28,7 @@ int main( int argc, char * argv[])
 		exit(1);
 	}
 	rfp = fopen(argv[1],"rt");
-    wfp = fopen("ubuntu_dockerfile","wt");
+    wfp = fopen("dockerfile","wt");
 	strcpy(tempc,"FROM ubuntu:latest\n");
 	fputs(tempc,wfp);
 

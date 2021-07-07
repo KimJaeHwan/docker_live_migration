@@ -1,5 +1,0 @@
-FROM ubuntu:latest
-RUN touch test
-RUN echo "migration_test" > test
-RUN echo "test">>test
-RUN 

@@ -1,5 +1,2 @@
 FROM ubuntu:latest
-RUN touch name
-RUN mkdir migration_dir
-RUN cd migration_dir/
-RUN touch test_file
+RUN truncate -s 100M my.file
