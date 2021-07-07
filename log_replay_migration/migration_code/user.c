@@ -44,6 +44,7 @@ int main(int argc, char *argv[])
 		exit(1);
 	message[0] = 'y';
 	start_time = clock();
+	printf("start_time : %f\n", start_time);
 	send(sock,message,1,0);		// send start message 
 	printf("send message from controller %c\n",message[0]);
 
@@ -54,7 +55,8 @@ int main(int argc, char *argv[])
 	if(message[0] == 'y')
 		printf("migration complete!!!!!\n");
 	end_time = clock();
-	printf("process time : %.3f\n",(end_time - start_time)/CLOCKS_PER_SEC);
+	printf("end_time : %f\n",end_time);
+	printf("process time : %.3f\n",(float)(end_time - start_time)/CLOCKS_PER_SEC);
 
 	close(sock);
 
