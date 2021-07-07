@@ -49,6 +49,7 @@ Log_replay방식에서는 위와 같이 남는 json파일 형식의 log들을 �
 3. ./VM1.o &lt;controller IP&gt; &lt;controller port&gt; &lt;docker-json.log&gt;
    1. VM1과 VM2는 별도의 INET소켓으로 연결되어있으며 VM1 포트번호는 #define VM1_port 8888 로 코드상에 지정되어있다.
    2. VM1에는 dockfile을 만들기 위한 -json.log파일의 경로를 argv[3] 으로 받도록 설정되어있으며 정대경로를 이용하여 넣어주어야한다.
+   3. VM1.o 에는 docker_json.o 파일을 이용하여 json파일을 파싱하므로 VM1.o 와 docker_json.o 는 같은 디렉토리에 위치해 있어야한다.
 4. ./VM2.o &lt;controller IP&gt; &lt;controller port&gt;
    1. VM2 또한 VM1에 연결되어있으며 VM1에대한 IP와 port번호는 #define VM1_port 8888 , VM1_IP "192.168.139.142"로 코드 상에 지정되어있다.
 5. 모든 프로그램을 실행시킨후 user.o 실행파일에 [Y/n] 으로 실행여부를 응답한다.
