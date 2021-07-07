@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
 		printf("migration complete!!!!!\n");
 	end_time = clock();
 	printf("end_time : %f\n",end_time);
-	printf("process time : %.3f\n",(float)(end_time - start_time)/CLOCKS_PER_SEC);
+	printf("process time : %.3f\n",(float)(end_time - start_time));
 
 	close(sock);
 
