@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
+#include <time.h>
 
 #define BUF_SIZE 1024
 void error_handling(char * message);
@@ -14,7 +15,7 @@ int main(int argc, char *argv[])
 	char message[BUF_SIZE];
 	int str_len,num;
 	struct sockaddr_in serv_adr;
-	
+	float start_time, end_time;
 	char input_message[99],temp;
 
 	if(argc != 3)
@@ -42,6 +43,7 @@ int main(int argc, char *argv[])
 	if( input_message[0] != 0 && input_message[0] != 'y' && input_message[0] !='Y')
 		exit(1);
 	message[0] = 'y';
+	start_time = clock();
 	send(sock,message,1,0);		// send start message 
 	printf("send message from controller %c\n",message[0]);
 
@@ -51,7 +53,8 @@ int main(int argc, char *argv[])
 
 	if(message[0] == 'y')
 		printf("migration complete!!!!!\n");
-
+	end_time = clock();
+	printf("process time : %.3f\n",(end_time - start_time)/CLOCKS_PER_SEC);
 
 	close(sock);
 

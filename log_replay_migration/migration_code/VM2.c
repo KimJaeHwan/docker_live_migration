@@ -94,16 +94,15 @@ int main(int argc, char * argv[])
 	
 	/* end receving docker image file */
 
-	
 
-
-	message[0] = 'y';
-	send(sock,message,1,0);
 	printf("send message from controller : %c\n",message[0]);
 	printf(" sucess ~~\n");
 	
 	system("docker image build -t log_replay_test .");
 	system("docker run -d -it log_replay_test /bin/bash");
+	
+	message[0] = 'y';
+	send(sock,message,1,0);
 	
 	close(sock);
 	close(vm1_sock);
